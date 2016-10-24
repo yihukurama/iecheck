@@ -26,7 +26,7 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yihukurama.wechat.iecheck.framework.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yihukurama.wechat.iecheck"))
                 .paths(PathSelectors.any())
                 .build();
     }

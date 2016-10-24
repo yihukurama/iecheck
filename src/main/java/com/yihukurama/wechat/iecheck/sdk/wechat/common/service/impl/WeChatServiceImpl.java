@@ -8,14 +8,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.yihukurama.wechat.iecheck.common.HttpUtils;
-import com.yihukurama.wechat.iecheck.common.JsonUtil;
-import com.yihukurama.wechat.iecheck.common.SHA1;
-import com.yihukurama.wechat.iecheck.framework.domain.cache.RedisUtils;
+import com.yihukurama.wechat.iecheck.common.utils.HttpUtils;
+import com.yihukurama.wechat.iecheck.common.utils.JsonUtil;
+import com.yihukurama.wechat.iecheck.common.utils.SHA1;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.Constant;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.WeChatAPI;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.AccessToken;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.AuthToken;
+import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.CityMsgResult;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.JSApiTicket;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.JSSignature;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.service.WeChatService;
@@ -31,8 +31,8 @@ import com.yihukurama.wechat.iecheck.sdk.wechat.common.service.WeChatService;
 @Service
 public class WeChatServiceImpl implements WeChatService{
 	
-	@Autowired
-	RedisUtils redisUtils;
+//	@Autowired
+//	RedisUtils redisUtils;
 	
 	@Autowired
 	HttpUtils httpUtils;
@@ -74,14 +74,14 @@ public class WeChatServiceImpl implements WeChatService{
       */
      public AccessToken getAccessToken ()
      {
-    	AccessToken at = (AccessToken)redisUtils.get(Constant.REDISKEY_ACCESSTOKEN);
-    	if(at == null){
+//    	AccessToken at = (AccessToken)redisUtils.get(Constant.REDISKEY_ACCESSTOKEN);
+//    	if(at == null){
     		//token没有存在于缓存中
 			//获取动态access_token
 			String jsonAccessToken = httpUtils.doGet(String.format(WeChatAPI.accessToken,Constant.APPID ,Constant.APPSECRET));
-			at = JsonUtil.toObject(jsonAccessToken, AccessToken.class);
-			redisUtils.set(Constant.REDISKEY_ACCESSTOKEN, at,7100L);
-    	}
+			AccessToken	at = JsonUtil.toObject(jsonAccessToken, AccessToken.class);
+//			redisUtils.set(Constant.REDISKEY_ACCESSTOKEN, at,7100L);
+//    	}
     	return at;
      }
      
@@ -94,16 +94,16 @@ public class WeChatServiceImpl implements WeChatService{
       */
      public JSApiTicket getJSApiTicket()
      {
-    	 JSApiTicket ticket =(JSApiTicket)redisUtils.get(Constant.REDISKEY_JSAPITICKEY);
+//    	 JSApiTicket ticket =(JSApiTicket)redisUtils.get(Constant.REDISKEY_JSAPITICKEY);
  	    
- 		 if(ticket == null){
+// 		 if(ticket == null){
  			 AccessToken accessToken =getAccessToken();
- 			//获取ticket
+// 			//获取ticket
   			String jsonJSApiTicket = httpUtils.doGet(String.format(WeChatAPI.jsapi_ticket, accessToken.getAccess_token()));
-  	    	ticket = JsonUtil.toObject(jsonJSApiTicket, JSApiTicket.class);
-  	    	redisUtils.set(Constant.REDISKEY_JSAPITICKEY, ticket,7100L);
-  	    	
- 		 }
+  			JSApiTicket ticket = JsonUtil.toObject(jsonJSApiTicket, JSApiTicket.class);
+//  	    	redisUtils.set(Constant.REDISKEY_JSAPITICKEY, ticket,7100L);
+//  	    	
+// 		 }
  			
  		return ticket;
      }
@@ -180,6 +180,34 @@ public class WeChatServiceImpl implements WeChatService{
 		//json-->bean 数据解释
 		AuthToken authToken = JsonUtil.toObject(jsonAuthToken, AuthToken.class);
 		return authToken.getOpenid();
+	}
+
+	@Override
+	public AccessToken getNewAccessToken() {
+		AccessToken at = null;
+		HttpUtils hu = new HttpUtils();
+		String jsonAccessToken = hu.doGet(String.format("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",Constant.APPID ,Constant.APPSECRET));
+		at = JsonUtil.toObject(jsonAccessToken, AccessToken.class);
+		
+		return at;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.yihukurama.wechat.iecheck.sdk.wechat.common.service.WeChatService#sendCityMsg(java.lang.String)
+	 */
+	@Override
+	public CityMsgResult sendCityMsg(String openId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.yihukurama.wechat.iecheck.sdk.wechat.common.service.WeChatService#sendTemplateMsg(java.lang.String)
+	 */
+	@Override
+	public String sendTemplateMsg(String openId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
   
 }

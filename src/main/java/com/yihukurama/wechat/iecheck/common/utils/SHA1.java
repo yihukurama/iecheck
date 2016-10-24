@@ -1,4 +1,4 @@
-package com.yihukurama.wechat.iecheck.common;
+package com.yihukurama.wechat.iecheck.common.utils;
 
 /*
  * 微信公众平台(JAVA) SDK

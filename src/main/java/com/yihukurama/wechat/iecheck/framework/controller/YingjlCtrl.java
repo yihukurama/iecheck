@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
  * @Author:dengshuai
  * @Date:2016年10月15日 下午10:00:57
  */
-@Api
+@Api(description="英吉利业务控制器")
 @RestController
 @RequestMapping("/Yingjl")
 public class YingjlCtrl {

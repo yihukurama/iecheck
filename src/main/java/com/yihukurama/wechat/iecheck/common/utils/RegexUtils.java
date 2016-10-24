@@ -1,4 +1,4 @@
-package com.yihukurama.wechat.iecheck.common;
+package com.yihukurama.wechat.iecheck.common.utils;
 
 import java.util.ArrayList;
 import java.util.List;

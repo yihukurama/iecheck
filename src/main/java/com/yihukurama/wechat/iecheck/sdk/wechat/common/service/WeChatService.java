@@ -1,16 +1,7 @@
 package com.yihukurama.wechat.iecheck.sdk.wechat.common.service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import com.yihukurama.wechat.iecheck.common.JsonUtil;
-import com.yihukurama.wechat.iecheck.common.SHA1;
-import com.yihukurama.wechat.iecheck.sdk.wechat.common.Constant;
-import com.yihukurama.wechat.iecheck.sdk.wechat.common.WeChatAPI;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.AccessToken;
-import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.AuthToken;
+import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.CityMsgResult;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.JSApiTicket;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.modle.JSSignature;
 
@@ -72,4 +63,30 @@ public interface WeChatService {
 	 * @Date:2016年10月16日 上午12:02:04
 	 */
 	public String getAuthToken(String code) throws Exception;
+
+	/**
+	 * 功能描述:
+	 * @return
+	 * @Author:dengshuai
+	 * @Date:2016年10月24日 下午10:34:47
+	 */
+	public AccessToken getNewAccessToken();
+
+	/**
+	 * 功能描述:
+	 * @param openId
+	 * @return
+	 * @Author:dengshuai
+	 * @Date:2016年10月24日 下午10:34:57
+	 */
+	public CityMsgResult sendCityMsg(String openId);
+
+	/**
+	 * 功能描述:
+	 * @param openId
+	 * @return
+	 * @Author:dengshuai
+	 * @Date:2016年10月24日 下午10:35:07
+	 */
+	public String sendTemplateMsg(String openId);
 }

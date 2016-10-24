@@ -1,4 +1,4 @@
-package com.yihukurama.wechat.iecheck.common;
+package com.yihukurama.wechat.iecheck.common.utils;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
