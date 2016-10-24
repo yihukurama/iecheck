@@ -5,7 +5,6 @@
 	<groupId>com.yihukurama.wechat</groupId>
 	<artifactId>iecheck</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 
 	<name>iecheck</name>
 	<properties>
