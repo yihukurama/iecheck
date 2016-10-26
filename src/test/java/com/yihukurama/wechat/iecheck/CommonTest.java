@@ -41,36 +41,6 @@ public class CommonTest {
 		
 	}
 
-	@Test
-	public void test() throws Exception {
-		YizhiRequest yizhiRequest = new YizhiRequest();
-		yizhiRequest.setOper("query");
-		yizhiRequest.setSqlid("9515");
-		List params = new ArrayList();
-		Map<String,String> map = new HashMap();
-		map.put("CODE_TYPE", "x2d");
-		map.put("CODE", "123");
-		params.add(map);
-		yizhiRequest.setParams(params);
-		String requestBody = JsonUtil.toJson(yizhiRequest);
-		System.out.println(requestBody);
-    }
-    
-	@Test
-	public void testYizhiAPI9515() throws Exception {
-		YizhiRequest yizhiRequest = new YizhiRequest();
-		yizhiRequest.setOper("query");
-		yizhiRequest.setSqlid("9515");
-		List params = new ArrayList();
-		Map<String,String> map = new HashMap();
-		map.put("CODE_TYPE", "x2d");
-		map.put("CODE", "123");
-		params.add(map);
-		yizhiRequest.setParams(params);
-		String requestBody = JsonUtil.toJson(yizhiRequest);
-		String yizhiResponse = httpUtils.doPost(Constant.YIZHI_API, requestBody, "UTF-8");
-		System.out.println(yizhiResponse);
-	}
 
 	@Test
 	public void testRedisExprie() throws Exception {

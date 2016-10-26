@@ -10,7 +10,7 @@ public class Constant {
     public static final String AESKEY = "hgACmUxCReVWYFDIs29z6fb1MzbTjc6Eko3BgYWyRQR";//编码随机数
     
 	
-    public static String REDIRECTURL="http://www.iecheck.com";//重定向地址
+    public static String REDIRECTURL=Constant.host+"/Yingjl/scanQRCode";//重定向地址
     public static String host = "http://www.iecheck.com";
     
     //redis缓存中的键

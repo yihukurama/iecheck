@@ -47,17 +47,17 @@ public class YingjlCtrl {
 
 	@ApiOperation(httpMethod="GET", value="微信授权第一步",notes="英吉利二维码扫描入口")
 	@RequestMapping("/authorization")
-	public ModelAndView getAuthorization() throws Exception{
+	public ModelAndView getAuthorization(String qrcode) throws Exception{
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName(String .format("redirect:"+WeChatAPI.authorization,Constant.host+"/Yingjl/openid",Constant.APPID));
+		mav.setViewName(String .format("redirect:"+WeChatAPI.authorization,Constant.host+"/Yingjl/openid"+"?qrcode="+qrcode,Constant.APPID));
 		return mav;
 	}
 	
 	@ApiOperation(httpMethod="GET", value="获取OpenId",notes="英吉利二维码扫描入口")
 	@RequestMapping("/openid")
-	public ModelAndView getOpenId(String code) throws Exception{
+	public ModelAndView getOpenId(String code,String qrcode) throws Exception{
 		String openid = weChatService.getAuthToken(code);
-		String params = "?openid="+openid+"&"+"type=1";//type为1是爱查公众号的openid
+		String params = "?openid="+openid+"&type=1&qrcode="+qrcode;//type为1是爱查公众号的openid
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName(String .format("redirect:"+Constant.REDIRECTURL+params));
 		return mav;
