@@ -14,7 +14,7 @@ public class YizhiRequest implements Serializable{
 	private String m ="db";
 	private	String oper;
 	private	String sqlid;
-	private	List<Object> params;
+	private	Params params;
 	/**
 	 * @return the m
 	 */
@@ -54,16 +54,15 @@ public class YizhiRequest implements Serializable{
 	/**
 	 * @return the params
 	 */
-	public List<Object> getParams() {
+	public Params getParams() {
 		return params;
 	}
 	/**
 	 * @param params the params to set
 	 */
-	public void setParams(List<Object> params) {
+	public void setParams(Params params) {
 		this.params = params;
 	}
-	
 	
 	
 		 

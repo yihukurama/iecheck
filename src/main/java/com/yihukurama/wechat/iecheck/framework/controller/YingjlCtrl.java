@@ -1,7 +1,6 @@
 package com.yihukurama.wechat.iecheck.framework.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -9,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.yihukurama.wechat.iecheck.framework.service.YingjlService;
-import com.yihukurama.wechat.iecheck.framework.transfer.RequestDto;
 import com.yihukurama.wechat.iecheck.framework.transfer.ResponseDto;
+import com.yihukurama.wechat.iecheck.framework.transfer.model.Params;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.Constant;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.WeChatAPI;
 import com.yihukurama.wechat.iecheck.sdk.wechat.common.service.WeChatService;
@@ -36,11 +35,15 @@ public class YingjlCtrl {
 	
 	@ApiOperation(httpMethod="GET", value="微信扫码", notes="微信扫码2")
 	@RequestMapping(value="/scanQRCode",method=RequestMethod.GET)
-	public @ResponseBody ResponseDto scanQRCode(@RequestBody RequestDto requestDto){
-		return yingjlService.scanQRCode(requestDto);
+	public @ResponseBody ResponseDto scanQRCode(String openId,String qrcode){
+		return yingjlService.scanQRCode(openId,qrcode);
 	}
 	
-	
+	@ApiOperation(httpMethod="GET", value="微信发红包", notes="微信扫码2")
+	@RequestMapping(value="/sendLuckyMoney",method=RequestMethod.GET)
+	public @ResponseBody ResponseDto sendLuckyMoney(Params params){
+		return yingjlService.sendLuckyMoney(params);
+	}
 
 	@ApiOperation(httpMethod="GET", value="微信授权第一步",notes="英吉利二维码扫描入口")
 	@RequestMapping("/authorization")
