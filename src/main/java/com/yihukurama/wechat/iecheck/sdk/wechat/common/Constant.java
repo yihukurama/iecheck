@@ -11,7 +11,8 @@ public class Constant {
     
 	
     public static String REDIRECTURL=Constant.host+"/Yingjl/scanQRCode";//重定向地址
-    public static String host = "http://www.iecheck.com";
+//    public static String host = "http://www.iecheck.com";
+    public static String host = "http://www.lovebanks.cn";
     
     //redis缓存中的键
     public static final String REDISKEY_ACCESSTOKEN = "REDISKEY_ACCESSTOKEN";
